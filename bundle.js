@@ -4,16 +4,26 @@ var _ = require("lodash");
 
 var list = [ "john", "paul", "george", "ringo"];
 
-function message(){
-	console.log("This is a message");
-	alert("This is a message")
+function addlist(){
+	var newItem = $("#newItem").val();
+	list.push(newItem);
+	printList();
+	$("#newItem").val("");
 }
 
-$(document).ready(function(){
-	$("#nameList").append("Our list is going to go here!");
-});
 
-window.message = message;
+function printList(){
+	var ourlist = $("#nameList");
+	ourlist.html("");
+	_(list).forEach(function(el){
+		ourlist.append("<li>" + el + "</li>");
+	})
+}
+
+$(document).ready(printList);
+
+window.addlist = addlist;
+window.printList = printList;
 },{"jquery":2,"lodash":3}],2:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v3.3.1
